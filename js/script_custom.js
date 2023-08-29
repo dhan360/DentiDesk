@@ -45,8 +45,9 @@ function insertTransaction() {
 }
 
 function getTransactions(){
+    var month = jQuery("#month").val();
     jQuery.ajax({
-        data: { action: 'getTransactions' },
+        data: { action: 'getTransactions', month: month },
         url: 'src/transactionController.php',
         type: 'post',
         success: function(response) {

@@ -13,6 +13,13 @@
             include('src/transactionModel.php');
         ?>
         <div class="container">
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Mes</label>
+                <select class="form-select" id='month' onchange="getTransactions();">
+                            <option selected value="0">Selecciona...</option>
+                            <?php echo selectMonths(); ?>
+                </select>
+            </div>
             <div class='row mt-4'>
                 <table class="table">
                     <thead>

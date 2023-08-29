@@ -9,7 +9,7 @@ if(isset($_POST)):
         $result = insertTransaction($_POST['type'], $_POST['detail'], $_POST['value'], $_POST['date']);
         die($result);
     elseif($action == 'getTransactions'):
-        $result = getTransaction();
+        $result = getTransaction($_POST['month']);
         die($result);
     endif;
 endif;

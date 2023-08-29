@@ -28,9 +28,12 @@ function insertTransaction($type, $detail, $value, $date){
     return $result;
 }
 
-function getTransaction(){
+function getTransaction($month = 0){
     $conn = connectMysql();
     $query = "SELECT * FROM `transactions`order by date DESC;";
+    if((int)$month != 0){
+        $query = "SELECT * FROM `transactions` where MONTH(date) = ".(int)$month." order by date DESC;";
+    }
     $transactions = $conn->query($query);
     $table = "";
     if ($transactions->rowCount() > 0) {
@@ -74,4 +77,14 @@ function getMothText(){
     $meses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
     $monthName = $meses[(int)getMonth() - 1];
     return $monthName;
+}
+
+function selectMonths(){
+    $meses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+    $select = "";
+    foreach($meses as $key=>$month){
+        $val = $key+1;
+        $select .= '<option value="'.$val.'">'.$month.'</option>';
+    }
+    return $select;
 }
